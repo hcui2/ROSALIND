@@ -1,16 +1,10 @@
-residue2mass = {}
-mass2ressidue = {}
-with open("amino_acid_masses.txt") as f:
-    for line in f:
-        l = line.split('\t')
-        residue = l[0]
-        mass = int(float(l[-1]))
-        residue2mass[residue] = mass
-        mass2ressidue[mass] = residue
+from BA11Utils import *
 
-with open("TestData/rosalind_ba11a.txt") as f:
-    masses = f.readline()
-    masses = [int(m) for m in masses.strip().split()]
+# parse the amino acid masses
+residue2mass, mass2ressidue = parse_aa_masses()
+
+# read the masses from the input file
+masses = parse_masses_from_file("TestData/rosalind_ba11a.txt")
 
 res = []
 masses.insert(0, 0)
